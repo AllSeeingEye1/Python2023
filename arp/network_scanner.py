@@ -1,8 +1,19 @@
 #!/usr/bin/env python
 
 import scapy.all as scapy
+import optparse
 
 from scapy.layers.l2 import Ether, ARP
+
+def get_arguments():
+    parser = optparse.OptionParser()
+
+    parser.add_option("-t", "--target", dest="target", help="Field to change target.")
+
+    (options,arguments) = parser.parse_args()
+    if not options.target:
+        parser.error("Please specify a target, use --help for more info.")
+    return options
 
 def scan(ip):
     arp_request = scapy.ARP(pdst=ip)
@@ -11,9 +22,22 @@ def scan(ip):
     answered_list = scapy.srp(arp_request_broadcast, timeout=1, verbose=False)[0]
     
     #header
-    print("IP\t\t\tMAC Address\n--------------------------------")
+    clients_list=[]
+
+
 #iterate values of answered list, printing ip and mac address
     for element in answered_list:
-       print(element[1].psrc,"\t\t",element[1].hwsrc)
-scan("192.168.1.1/24")
+        client_dict={"ip":element[1].psrc, "mac":element[1].hwsrc}
+        clients_list.append(client_dict)
+    return clients_list
+
+
+def print_result(results_list):
+    print("IP\t\t\tMAC Address\n--------------------------------")
+    for client in results_list:
+        print(client["ip"] + "\t\t" + client["mac"])
     
+#new addition
+options = get_arguments()
+scan_result =scan(options.target)
+print_result(scan_result)

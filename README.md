@@ -1,2 +1,2 @@
-# Python2023
+#Ethical Hacking Scripts
 Python practice

@@ -20,15 +20,12 @@
 <h2>Usage:</h2>
    <ul>
     
-     ``` php
-        python (script_name).py -t (target_ip_range) 
-       ```
-      
-    
-  </ul>
+      python <script_name>.py -t <target_ip_range> 
+        
+   </ul>
 <ul>
-  <li> (script_name): Name of this script (e.g., network_scanner.py). </li>
-  <li><(target_ip_range)>: IP range to scan. For example, 192.168.1.1/24 to scan all devices between 192.168.1.1 and 192.168.1.254.</li>
+  <li> <'script_name'>: Name of this script (e.g., network_scanner.py). </li>
+  <li><'target_ip_range'>: IP range to scan. For example, 192.168.1.1/24 to scan all devices between 192.168.1.1 and 192.168.1.254.</li>
 </ul>
     
 <h2>Functionality: </h2>
